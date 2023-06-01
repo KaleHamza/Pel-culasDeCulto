@@ -1,0 +1,21 @@
+<div class="card mb-3">
+    <div class="row">
+        <div class="col-4">
+            <img class="img-fluid rounded-start" src="{{movie.imageUrl}}" alt="movie.title">
+        </div>
+        <div class="col-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ movie.title }}</h5>
+                <p class="card-text">{{movie.description}}</p>
+                <span>
+                    {% if movie.isUpdated %}
+                        <span class="badge bg-success">Is Updated</span>
+                    {% else %}
+                        <span class="badge bg-warning">Is waiting update</span>
+                    {% endif %}
+                </span>
+                <p>{{movie.date}}</p>
+            </div>
+        </div>
+    </div>
+</div>
