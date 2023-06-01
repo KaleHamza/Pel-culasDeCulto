@@ -1,9 +1,14 @@
 {% extends 'layout.html' %}
 
+{% load static %}
+
 {% block page_title %}
     Movies Homepage
-{% endblock page_title %}
+{% endblock %}
 
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'PeliculasDeCulto/css/style.css' %}">
+{% endblock %}
 
 {% block content %}
 

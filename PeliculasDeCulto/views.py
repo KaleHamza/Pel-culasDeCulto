@@ -10,7 +10,7 @@ db = {
         {
             "title":"El Topo",
             "description":"By Alejandro Jodorowsky. This film incorporates elements of traditional Western movies but stands out with its fantasy and psychedelic elements. It is also a dramatic and suspenseful story.",
-            "imageUrl":"https://m.media-amazon.com/images/M/MV5BNmUzMWQzMTItYzZiOS00NmI1LWIzMTgtOWE4NzE1M2NhY2IxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+            "imageUrl":"ElTopo.jpg",
             "slug":"El-Tapo-movie-link",
             "date": date(1970,11,18),
             "isActive":True,
@@ -19,7 +19,7 @@ db = {
         {
             "title":"Viridiana",
             "description":"By Luis Buñuel. This film is filled with Luis Buñuel's signature absurd and black comedy elements. It can be described as a drama that questions social issues and moral values.",
-            "imageUrl":"https://m.media-amazon.com/images/M/MV5BZTk4ODhmNDEtM2RlMS00ZWEyLWJlY2YtODcyZGRlMDEwOGI5XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+            "imageUrl":"Viridiana.jpg",
             "slug":"Viridiana-movie-link",
             "date": date(1961,10,10),
             "isActive":True,
@@ -29,7 +29,7 @@ db = {
          {
             "title":"Todo sobre mi madre",
             "description":"By Pedro Almodóvar. This film, with Pedro Almodóvar's distinctive style of colorful and emotional storytelling, combines elements of drama and comedy. It has a melodramatic tone and explores themes such as gender roles, motherhood, and friendship.",
-            "imageUrl":"https://m.media-amazon.com/images/M/MV5BODMyYTc3YmItZDYwZC00ZmU1LTgyNGUtMDU4NDhiOWExNmU3XkEyXkFqcGdeQXVyMTI3ODAyMzE2._V1_.jpg",
+            "imageUrl":"TodoSobreMiMadre.jpg",
             "slug":"Todo-sobre-mi-madre-movie-link",
             "date": date(1999,5,26),
             "isActive":True,
