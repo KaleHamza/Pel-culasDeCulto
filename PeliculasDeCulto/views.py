@@ -54,33 +54,24 @@ def index(request):
                   })
 
 def dizilerdetay(request, slug):
-    movie = get_object_or_404(PeliculasDeCulto, slug= slug)
+    movie = get_object_or_404(PeliculasDeCulto, slug=slug)
     context = {
         'movie': movie
     }
     return render(request, 'PeliculasDeCulto/details.html', context)
 
-def commends(request):
-    return HttpResponse('Yorumlar(commends())')
+#def commends(request):
+ #   return HttpResponse('Yorumlar(commends())')
 
 #def starsmovie(request):
 #    return HttpResponse('Yıldız filmler')
 
-def getMoviesByCategory(request, category_name):
-    try:
-        category_text = data[category_name]
-        return render(request, 'PeliculasDeCulto/movies.html', {
-            'category': category_name,
-            'category_text':category_text
-        })
-    except:
-        return  HttpResponseNotFound("Wrong stuff")
-         
-def getMoviesByCategoryId(request, category_id):
-    category_list = list(data.keys())
-    if(category_id > len(category_list)):
-        return HttpResponseNotFound("Yanlış liste")
-    category_name = category_list[category_id-1]
+def getMoviesByCategory(request, slug):
+    movies = PeliculasDeCulto.objects.filter(category__slug=slug, isActive=True)
+    categories = Category.objects.all()
 
-    redirect_url = reverse('movies_by_category', args = [category_name])
-    return HttpResponseRedirect(redirect_url)
+    return render(request, 'PeliculasDeCulto/index.html', {
+        'categories': categories,
+        'movies': movies,
+        'selectedCategory':slug
+    })
