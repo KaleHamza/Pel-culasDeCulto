@@ -1,8 +1,8 @@
 from datetime import date
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-# Create your views here.
+from .models import PeliculasDeCulto,Category
 # Her bir metot view olarak adlandırılır
 
 db = {
@@ -45,16 +45,20 @@ db = {
 
 def index(request):
     #list comphension
-    movies = [movie for movie in db["movies"] if movie["isActive"] == True]
-    categories = db["categories"]
+    movies = PeliculasDeCulto.objects.all()
+    categories = Category.objects.all()
     
     return render(request, 'PeliculasDeCulto/index.html', {
                   'categories': categories,
                   "movies": movies
                   })
 
-def dizilerdetay(request, movie_name):
-    return HttpResponse(f'{movie_name} Dizi Detaylari(dizilerdetay())')
+def dizilerdetay(request, slug):
+    movie = get_object_or_404(PeliculasDeCulto, slug= slug)
+    context = {
+        'movie': movie
+    }
+    return render(request, 'PeliculasDeCulto/details.html', context)
 
 def commends(request):
     return HttpResponse('Yorumlar(commends())')

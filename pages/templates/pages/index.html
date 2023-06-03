@@ -1,23 +1,23 @@
 {% extends 'layout.html' %}
 
 {% block page_title %}
-    Home Page
+        Home
 {% endblock page_title %}
 
 {% block content %}
-
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-3 ">
-            <!--menu-->
-            {% include 'PeliculasDeCulto/partials/_categories.html' %}
-        </div>
-        <div class="col-9 ">
-            <!--content-->
-            <h1>Home page</h1> 
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3 ">
+                <!--menu-->
+                {% include 'PeliculasDeCulto/partials/_categories.html' %}
+            </div>
+            <div class="col-9 ">
+                <!--content-->
+                <h1>Home</h1><br>
+                <h2>Welcome de Peluculas De Culto Movie Website!</h2><br>
+                <h2>You can find a lot of info about 'Culto' Movies.</h2> <br>
+                <h2>Have Fun!</h2>
+            </div>
         </div>
     </div>
-</div>
-
-
 {% endblock content %}

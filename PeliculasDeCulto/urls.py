@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('<movie_name>', views.dizilerdetay),
+    path('<slug:slug>', views.dizilerdetay, name = "movie_details"),
     path('commends', views.commends),
     #path('stars',views.starsmovie),
     path('category/<int:category_id>', views.getMoviesByCategoryId),
