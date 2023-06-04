@@ -1,8 +1,9 @@
 from datetime import date
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from .models import PeliculasDeCulto,Category
+from django.core.paginator import Paginator
 # Her bir metot view olarak adlandırılır
 
 db = {
@@ -45,13 +46,31 @@ db = {
 
 def index(request):
     #list comphension
-    movies = PeliculasDeCulto.objects.all()
+    movies = PeliculasDeCulto.objects.filter(isActive=1,isHome=True)
     categories = Category.objects.all()
     
     return render(request, 'PeliculasDeCulto/index.html', {
                   'categories': categories,
                   "movies": movies
                   })
+
+def create_movie(request):
+    return render(request, "PeliculasDeCulto/create-movie.html")
+
+def search(request):
+    if "q" in request.GET and request.GET["q"] != "":
+        q = request.GET["q"]
+        movies = PeliculasDeCulto.objects.filter(isActive=True,title__contains=q).order_by("date")
+        categories = Category.objects.all()
+    else:
+        return redirect("/movies")
+    
+    
+
+    return render(request, 'PeliculasDeCulto/search.html', {
+        'categories': categories,
+        'movies': movies,
+    })
 
 def dizilerdetay(request, slug):
     movie = get_object_or_404(PeliculasDeCulto, slug=slug)
@@ -67,11 +86,15 @@ def dizilerdetay(request, slug):
 #    return HttpResponse('Yıldız filmler')
 
 def getMoviesByCategory(request, slug):
-    movies = PeliculasDeCulto.objects.filter(category__slug=slug, isActive=True)
+    movies = PeliculasDeCulto.objects.filter(categories__slug=slug, isActive=True).order_by("title")
     categories = Category.objects.all()
 
-    return render(request, 'PeliculasDeCulto/index.html', {
+    paginator = Paginator(movies, 4)
+    page = request.GET.get('page',1)
+    page_obj = paginator.page(page)
+
+    return render(request, 'PeliculasDeCulto/list.html', {
         'categories': categories,
-        'movies': movies,
+        'page_obj': page_obj,
         'selectedCategory':slug
     })

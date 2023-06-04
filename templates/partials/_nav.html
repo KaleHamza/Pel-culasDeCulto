@@ -1,19 +1,21 @@
 <nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #074623;">
         
     <div class = "container">
-        <a href="/" class="navbar-brand">PeliCulto</a>
+        <a href="{% url 'index' %}" class="navbar-brand">PeliCulto</a>
 
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a href="/movies/" class="nav-link">Movies</a>
+                <a href="{% url 'index' %}" class="nav-link">Movies</a>
             </li>
             <li class="nav-item">
-                <a href="/about" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-                <a href="/contact" class="nav-link">Contact</a>
+                <a href="{% url 'create_movie' %}" class="nav-link">Create Movie</a>
             </li>
         </ul>
+
+        <form class="d-flex" action="{%url 'search' %}">
+            <input class = "form-control me-1" type="text" name="q" placeholder = "what you will be searching?">
+            <button type="submit" class="btn btn-secondary">Search</button>
+        </form>
     </div>
 
 </nav>

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block page_title %}
-    Movies Homepage
+    Search
 {% endblock %}
 
 {% block css_files %}
@@ -18,14 +18,15 @@
                 {% include 'PeliculasDeCulto/partials/_categories.html' %}                
             </div>
             <div class="col-9 ">
-                {% if movies|length == 0 %}
+                {% if page_obj.object_list|length == 0 %}
                     <div class="alert alert-warning">Kurs Bulunamadı.</div>
                 {% endif %}
 
-                {% for movie in movies %}
+                {% for movie in page_obj.object_list %}
                         {% include 'PeliculasDeCulto/partials/_movie.html' %}
                 {% endfor %}
 
+                {% include 'PeliculasDeCulto/partials/_pagination.html' %}
             </div>
         </div>
     </div>
