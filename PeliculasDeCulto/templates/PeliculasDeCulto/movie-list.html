@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block page_title %}
+    {{movie.title}}
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'PeliculasDeCulto/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12 ">
+                   <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width:120px;"></th>
+                            <th style="width:200px;">Title</th>
+                            <th style="width:200px;">Slug</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movie in movies %}
+                            <tr>
+                                <td>
+                                    <img src="{% static 'PeliculasDeCulto/img/'|add:movie.imageUrl %}" class="img-fluid">
+                                </td>
+                                <td>{{movie.title}}</td>
+                                <td>{{movie.slug}}</td>
+                                <td><a class="btn btn-primary btn-sm"></a>Upgrade</td>     
+                            </tr><!--      " {% url 'movie_edit' movie.slug %}"Bu bir yorum satırıdır. -->
+                        {% endfor %}
+                    </tbody>
+                   </table>      
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

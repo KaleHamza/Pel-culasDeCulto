@@ -2,6 +2,7 @@ from datetime import date
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from .forms import PeliculasDeCultoCreateForm
 from .models import PeliculasDeCulto,Category
 from django.core.paginator import Paginator
 # Her bir metot view olarak adlandırılır
@@ -55,7 +56,24 @@ def index(request):
                   })
 
 def create_movie(request):
-    return render(request, "PeliculasDeCulto/create-movie.html")
+    if request.method == "POST":
+        form = PeliculasDeCultoCreateForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("/movies")
+    else:
+        form = PeliculasDeCultoCreateForm()
+    return render(request, "PeliculasDeCulto/create-movie.html", {"form":form})
+
+def movie_list(request):
+    movies = PeliculasDeCulto.objects.all()
+
+    return render(request, 'PeliculasDeCulto/movie-list.html', {
+                  "movies": movies
+                  })
+def movie_edit(request, id):
+    pass
 
 def search(request):
     if "q" in request.GET and request.GET["q"] != "":
