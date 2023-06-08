@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelMultipleChoiceField, TextInput,Textarea
+from django.forms import ModelMultipleChoiceField, SelectMultiple, TextInput,Textarea
 from PeliculasDeCulto.models import Category, PeliculasDeCulto
 
 # class PeliculasDeCultoCreateForm(forms.Form):
@@ -29,5 +29,25 @@ class PeliculasDeCultoCreateForm(forms.ModelForm):
             "description":Textarea(attrs={"class":"form-control"}),
             "date":TextInput(attrs={"class":"form-control"}),
             "slug":TextInput(attrs={"class":"form-control"}),
+        }
+
+class PeliculasDeCultoEditForm(forms.ModelForm):
+    class Meta:
+        model = PeliculasDeCulto
+        fields = ('title','description','imageUrl','slug','categories','isActive')
+        labels = {
+            'title':"Culto Name",
+            'description':"Culto Description",
+            'date':"Movie date: dd-mm-yyyy",
+            'slug':"Slug: peliculas-de-culto",
+            'isActive':"Want to publish?",
+            'isHome':"Want to see Home Page?"
             
+        }
+        widgets = {
+            "title":TextInput(attrs={"class":"form-control"}),
+            "description":Textarea(attrs={"class":"form-control"}),
+            "date":TextInput(attrs={"class":"form-control"}),
+            "slug":TextInput(attrs={"class":"form-control"}),
+            "categories": SelectMultiple(attrs={"class":"form-control"})
         }

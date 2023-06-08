@@ -2,7 +2,7 @@ from datetime import date
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from .forms import PeliculasDeCultoCreateForm
+from .forms import PeliculasDeCultoCreateForm, PeliculasDeCultoEditForm
 from .models import PeliculasDeCulto,Category
 from django.core.paginator import Paginator
 # Her bir metot view olarak adlandırılır
@@ -73,8 +73,23 @@ def movie_list(request):
                   "movies": movies
                   })
 def movie_edit(request, id):
-    pass
+    movie = get_object_or_404(PeliculasDeCulto,pk=id)
+    if request.method == "POST":
+        form = PeliculasDeCulto(request.POST, instance=movie)
+        form.save()
+        return redirect("movie_list")
+    else:
+        form=PeliculasDeCultoEditForm(instance=movie)
+    return render(request, "PeliculasDeCulto/edit-movie.html", {"form":form})
 
+def movie_delete(request,id):
+    movie = get_object_or_404(PeliculasDeCulto,pk=id)
+
+    if request.method == "POST":
+        movie.delete()
+        return redirect("movie_list")
+
+    return render(request,"PeliculasDeCulto/movie-delete.html", {"movie":movie})
 def search(request):
     if "q" in request.GET and request.GET["q"] != "":
         q = request.GET["q"]

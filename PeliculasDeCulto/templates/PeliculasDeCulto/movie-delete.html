@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block page_title %}
+    {{movie.title}}
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'PeliculasDeCulto/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12 ">     
+                <P>
+                    <strong>{{movie.title}}</strong>You want to delete this Culto Movie?
+                    <form action="{% url 'movie_delete' movie.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <a href="{% url 'movie_list' %}" class="btn btn-primary">No</a>
+                    </form>
+                </P>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

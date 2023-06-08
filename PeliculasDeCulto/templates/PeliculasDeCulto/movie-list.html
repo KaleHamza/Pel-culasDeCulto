@@ -32,8 +32,12 @@
                                 </td>
                                 <td>{{movie.title}}</td>
                                 <td>{{movie.slug}}</td>
-                                <td><a class="btn btn-primary btn-sm"></a>Upgrade</td>     
-                            </tr><!--      " {% url 'movie_edit' movie.slug %}"Bu bir yorum satırıdır. -->
+                                <td><a class="btn btn-primary btn-sm"></a>Upgrade</td>   
+                                <!--       "{% url 'movie_edit' movie.id %}"Bu bir yorum satırıdır. -->
+                                <td><a class="btn btn-danger btn-sm"></a>Delete</td>   
+                                <!--       "{% url 'movie_delete' movie.id %}"Bu bir yorum satırıdır. -->
+                            </tr>
+
                         {% endfor %}
                     </tbody>
                    </table>      
