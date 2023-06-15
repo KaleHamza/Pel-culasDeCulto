@@ -90,6 +90,13 @@ def movie_delete(request,id):
         return redirect("movie_list")
 
     return render(request,"PeliculasDeCulto/movie-delete.html", {"movie":movie})
+
+def upload(request):
+    if request.method == "POST":
+        uploaded_image = request.FILES['image']
+        print(uploaded_image)
+        return render(request, "PeliculasDeCulto/success.html")    
+    return render('PeliculasDeCulto/upload.html')
 def search(request):
     if "q" in request.GET and request.GET["q"] != "":
         q = request.GET["q"]

@@ -34,7 +34,7 @@ class PeliculasDeCultoCreateForm(forms.ModelForm):
 class PeliculasDeCultoEditForm(forms.ModelForm):
     class Meta:
         model = PeliculasDeCulto
-        fields = ('title','description','imageUrl','slug','categories','isActive')
+        fields = ('id','title','description','imageUrl','slug','categories','isActive')
         labels = {
             'title':"Culto Name",
             'description':"Culto Description",

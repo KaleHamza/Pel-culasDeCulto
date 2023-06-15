@@ -9,13 +9,14 @@ class Category(models.Model):
     
 
 class PeliculasDeCulto(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
     description = models.TextField()
     imageUrl = models.CharField(max_length=50, blank=False)
     date = models.DateField()
     isActive = models.BooleanField(default=False)
     isHome = models.BooleanField(default=False)
-    slug = models.SlugField(default="", blank=True,null = False, unique=True, primary_key=True)
+    slug = models.SlugField(default="", blank=True,null = False, unique=True)
     categories = models.ManyToManyField(Category)
 
     def __str__(self):
